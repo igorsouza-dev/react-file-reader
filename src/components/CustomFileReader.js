@@ -5,7 +5,12 @@ const openFile = (event) => {
   const reader = new FileReader();
   reader.onload = () => {
     const text = reader.result;
-    console.log(reader.result.substring(0, 200));
+    const lines = text.split(/[\r\n]+/g);
+    let array_line;
+    for (let i = 0; i < lines.length; i++) {
+      array_line = lines[i].split('	');
+      console.log(array_line);
+    }
   };
   reader.readAsText(input.files[0]);
 };
