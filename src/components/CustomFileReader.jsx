@@ -6,10 +6,10 @@ const openFile = (event) => {
   reader.onload = () => {
     const text = reader.result;
     const lines = text.split(/[\r\n]+/g);
-    let array_line;
-    for (let i = 0; i < lines.length; i++) {
-      array_line = lines[i].split('	');
-      console.log(array_line);
+    let arrayLine;
+    for (let i = 0; i < lines.length; i += 1) {
+      arrayLine = lines[i].split('	');
+      console.log(arrayLine);
     }
   };
   reader.readAsText(input.files[0]);
