@@ -3,6 +3,7 @@ const formStyle = {
   height: '100vh',
   position: 'relative',
   zIndex: 2,
+  marginTop: 10,
 };
 
 const containerStyle = {
@@ -13,9 +14,11 @@ const containerStyle = {
   height: '100vh',
   width: '100%',
 };
+
 const inputTextStyle = {
   fontSize: '2rem',
   lineHeight: '1.5',
+  marginTop: 10,
 };
 
 export { formStyle, containerStyle, inputTextStyle };
