@@ -6,23 +6,41 @@ import CustomList from './CustomList';
 import { formStyle, containerStyle } from './Styles';
 import Reader from '../utils/Reader';
 
-
 export default class CustomForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { list: [1, 2, 3, 5] };
+    this.state = { list: [] };
     this.changeList = this.changeList.bind(this);
     this.handleFile = this.handleFile.bind(this);
+    this.arrayFile = [];
   }
   changeList(value) {
-    this.setState({
-      ...this.state,
-      list: this.state.list.map(item => value),
+    // only look for words with more then 3 letters
+    if (value.length > 3) {
+      this.setState({
+        list: this.searchInArray(value),
+      });
+    }
+  }
+  searchInArray(needle) {
+    const haystack = this.arrayFile;
+    const lowerNeedle = needle.toLowerCase();
+    const searchResult = [];
+    haystack.map((items) => {
+      const item = items[0].toLowerCase();
+      if (item.includes(lowerNeedle)) {
+        searchResult.push(items);
+      }
+      return '';
     });
+    return searchResult;
   }
   handleFile(file) {
     const reader = new Reader('	');
-    reader.openFile(file, (arrayFile) => { this.setState({ list: arrayFile }); });
+    reader.fileToArray(file, (arrayFile) => {
+      this.setState({ list: arrayFile });
+      this.arrayFile = arrayFile;
+    });
   }
   render() {
     return (

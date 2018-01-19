@@ -4,7 +4,7 @@ export default class Reader {
     this.arrayFile = [];
   }
 
-  openFile(file, callback) {
+  fileToArray(file, callback) {
     const reader = new FileReader();
     this.arrayFile = [];
     reader.onload = () => {
