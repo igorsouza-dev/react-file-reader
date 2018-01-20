@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CustomFileReader from './CustomFileReader';
 import CustomInputText from './CustomInputText';
-import CustomList from './CustomList';
+import CustomTable from './CustomTable';
 
 import { formStyle, containerStyle } from './Styles';
 import Reader from '../utils/Reader';
@@ -9,7 +9,7 @@ import Reader from '../utils/Reader';
 export default class CustomForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { list: [] };
+    this.state = { list: [], header: [] };
     this.changeList = this.changeList.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.arrayFile = [];
@@ -38,7 +38,7 @@ export default class CustomForm extends Component {
   handleFile(file) {
     const reader = new Reader('	');
     reader.fileToArray(file, (arrayFile) => {
-      this.setState({ list: arrayFile });
+      this.setState({ list: arrayFile, header: arrayFile[0] });
       this.arrayFile = arrayFile;
     });
   }
@@ -48,8 +48,8 @@ export default class CustomForm extends Component {
         <div style={containerStyle}>
           <CustomFileReader onchange={event => this.handleFile(event.target.files[0])} />
           <CustomInputText onchange={event => this.changeList(event.target.value)} />
-          <div >
-            <CustomList items={this.state.list} />
+          <div>
+            <CustomTable header={this.state.header} rows={this.state.list} />
           </div>
         </div>
       </form>

@@ -13,6 +13,8 @@ const containerStyle = {
   textAlign: 'left',
   height: '100vh',
   width: '100%',
+  marginLeft: 40,
+  marginRight: 40,
 };
 
 const inputTextStyle = {
