@@ -3,7 +3,7 @@ import CustomFileReader from './CustomFileReader';
 import CustomInputText from './CustomInputText';
 import CustomTable from './CustomTable';
 
-import { formStyle, containerStyle } from './Styles';
+import { formStyle, containerStyle, results } from './Styles';
 import Reader from '../utils/Reader';
 
 export default class CustomForm extends Component {
@@ -36,9 +36,11 @@ export default class CustomForm extends Component {
     return searchResult;
   }
   handleFile(file) {
+    // using tab as a separator
     const reader = new Reader('	');
     reader.fileToArray(file, (arrayFile) => {
-      this.setState({ list: arrayFile, header: arrayFile[0] });
+      const header = arrayFile.splice(0, 1);
+      this.setState({ list: arrayFile, header });
       this.arrayFile = arrayFile;
     });
   }
@@ -48,7 +50,7 @@ export default class CustomForm extends Component {
         <div style={containerStyle}>
           <CustomFileReader onchange={event => this.handleFile(event.target.files[0])} />
           <CustomInputText onchange={event => this.changeList(event.target.value)} />
-          <div>
+          <div style={results}>
             <CustomTable header={this.state.header} rows={this.state.list} />
           </div>
         </div>

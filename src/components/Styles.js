@@ -10,6 +10,9 @@ const containerStyle = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  borderWidth: 1,
+  borderRadius: 4,
+  borderColor: '#d6d7da',
   textAlign: 'left',
   height: '100vh',
   width: '100%',
@@ -22,5 +25,10 @@ const inputTextStyle = {
   lineHeight: '1.5',
   marginTop: 10,
 };
+const results = {
+  margin: 50,
+  overflowY: 'scroll',
+  width: '80%',
+};
 
-export { formStyle, containerStyle, inputTextStyle };
+export { formStyle, containerStyle, inputTextStyle, results };
