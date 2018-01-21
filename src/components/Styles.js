@@ -3,7 +3,8 @@ const formStyle = {
   height: '100vh',
   position: 'relative',
   zIndex: 2,
-  marginTop: 10,
+  backgroundColor: '#bfd7ea',
+  paddingTop: 50,
 };
 
 const containerStyle = {
@@ -29,6 +30,11 @@ const results = {
   margin: 50,
   overflowY: 'scroll',
   width: '80%',
+  border: 'solid',
+  borderWidth: 1,
+  borderRadius: 12,
+  borderColor: '#508ca4',
+  backgroundColor: '#91aec1',
 };
 
 export { formStyle, containerStyle, inputTextStyle, results };

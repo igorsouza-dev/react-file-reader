@@ -5,7 +5,6 @@ import CustomTableRow from './CustomTableRow';
 
 export default class CustomTable extends Component {
   renderHeader() {
-    // return this.props.header && <tr>{this.props.header.map(th => <th>{th}</th>)}</tr>;
     return this.props.header && <CustomTableRow type="header" row={this.props.header} />;
   }
   renderRows() {
@@ -13,7 +12,7 @@ export default class CustomTable extends Component {
   }
   render() {
     return (
-      <table>
+      <table style={{ width: '100%' }}>
         <thead>
           {this.renderHeader()}
         </thead>

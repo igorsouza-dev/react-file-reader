@@ -9,9 +9,10 @@ import Reader from '../utils/Reader';
 export default class CustomForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { list: [], header: [] };
+    this.state = { list: [], header: [], showSearchBar: false };
     this.changeList = this.changeList.bind(this);
     this.handleFile = this.handleFile.bind(this);
+    this.showSearchBar = false;
     this.arrayFile = [];
   }
   changeList(value) {
@@ -40,7 +41,7 @@ export default class CustomForm extends Component {
     const reader = new Reader('	');
     reader.fileToArray(file, (arrayFile) => {
       const header = arrayFile.splice(0, 1);
-      this.setState({ list: arrayFile, header });
+      this.setState({ list: arrayFile, header, showSearchBar: true });
       this.arrayFile = arrayFile;
     });
   }
@@ -49,10 +50,13 @@ export default class CustomForm extends Component {
       <form style={formStyle}>
         <div style={containerStyle}>
           <CustomFileReader onchange={event => this.handleFile(event.target.files[0])} />
-          <CustomInputText onchange={event => this.changeList(event.target.value)} />
+          {this.state.showSearchBar &&
+          <CustomInputText onchange={event => this.changeList(event.target.value)} />}
+          {this.state.list.length > 0 &&
           <div style={results}>
             <CustomTable header={this.state.header} rows={this.state.list} />
           </div>
+          }
         </div>
       </form>
     );
